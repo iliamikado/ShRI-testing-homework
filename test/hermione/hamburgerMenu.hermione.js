@@ -1,9 +1,11 @@
+const { bugId } = require('./bugId');
+
 describe('hamburger menu', async function() {
     it('should have hamburger menu on small screen and it should work correctly', async function({browser}) {
         const puppeteer = await browser.getPuppeteer();
         const [page] = await puppeteer.pages()
 
-        await page.goto('http://localhost:3000/hw/store');
+        await page.goto('http://localhost:3000/hw/store' + bugId);
         await page.setViewport({width: 574, height: 1200});
         const header = await page.waitForSelector('.navbar');
         await browser.assertView('closed', '.navbar');
