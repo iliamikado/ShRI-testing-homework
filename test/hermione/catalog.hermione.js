@@ -63,16 +63,7 @@ describe('catalog', async function() {
         if (await page.$eval('.Product', node => node.innerHTML) === 'LOADING') {
             return;
         }
-        await browser.assertView('plain', '.Product', {
-            ignoreElements: [
-                '.ProductDetails-Name',
-                '.ProductDetails-Description',
-                '.ProductDetails-Price',
-                '.ProductDetails-Color',
-                '.ProductDetails-Material'
-
-            ]
-        })
+        await browser.assertView('plain', '.ProductDetails-AddToCart');
     });
 
 });

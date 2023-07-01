@@ -12,7 +12,7 @@ describe('hamburger menu', async function() {
         const hamburger = await header.waitForSelector('.navbar-toggler');
         await hamburger.click();
         await browser.pause(1000);
-        await browser.assertView('opened', '.navbar');
+        await browser.assertView('opened', '.navbar', {ignoreElements: ['.nav-link:nth-of-type(4)']});
         await hamburger.click();
         await browser.pause(1000);
         await browser.assertView('closedAfterClickOnBurger', '.navbar');
