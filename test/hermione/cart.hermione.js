@@ -30,14 +30,12 @@ describe('cart', async function() {
         let addToCart = await page.waitForSelector('.ProductDetails-AddToCart');
         await addToCart.click()
         let text = (await page.$eval('.nav-link:nth-of-type(4)', node => node.innerHTML));
-        console.log(text);
         if (text === 'Cart') {
             return;
         }
         await page.goto('http://localhost:3000/hw/store/catalog/0' + bugId);
         addToCart = await page.waitForSelector('.ProductDetails-AddToCart');
         text = (await page.$eval('.nav-link:nth-of-type(4)', node => node.innerHTML));
-        console.log(text);
         assert.equal(text, 'Cart (1)', 'cart count should be the same');
         await page.evaluate(() => {
             localStorage.clear();
@@ -62,14 +60,11 @@ describe('cart', async function() {
         await checkoutButton.click();
         await browser.pause(2000);
         const sended = !Boolean(await page.$('.Form-Submit'));
-        console.log(sended);
         if (sended) {
             return;
         }
         const errors = await Promise.all((await page.$$('.invalid-feedback')).map(inv => inv.boundingBox()));
-        console.log(errors.filter(err => (err != null)));
         if (errors.filter(err => (err != null)).length === 0) {
-            console.log('hi');
             assert.fail('inputs were correct, but page did not changed');
         }
     });
@@ -92,7 +87,6 @@ describe('cart', async function() {
         await checkoutButton.click();
         await browser.pause(2000);
         const sended = !Boolean(await page.$('.Form-Submit'));
-        console.log(sended);
         if (sended) {
             return;
         }
@@ -120,7 +114,6 @@ describe('cart', async function() {
         await checkoutButton.click();
         await browser.pause(2000);
         const sended = !Boolean(await page.$('.Form-Submit'));
-        console.log(sended);
         if (!sended) {
             return;
         }
@@ -150,7 +143,6 @@ describe('cart', async function() {
         await checkoutButton.click();
         await browser.pause(2000);
         const sended = !Boolean(await page.$('.Form-Submit'));
-        console.log(sended);
         if (!sended) {
             return;
         }
