@@ -12,7 +12,7 @@ import './index.css';
 
 const basename = '/hw/store';
 
-const api = new ExampleApi(basename);
+const api = new ExampleApi(basename, Number(process.env.BUG_ID) || 0);
 const cart = new CartApi();
 const store = initStore(api, cart);
 

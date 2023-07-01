@@ -2,20 +2,20 @@ import axios from 'axios';
 import { CartState, CheckoutFormData, CheckoutResponse, Product, ProductShortInfo } from '../common/types';
 
 export class ExampleApi {
-    constructor(private readonly basename: string) {
+    constructor(private readonly basename: string, private readonly bugId: number) {
 
     }
 
     async getProducts() {
-        return await axios.get<ProductShortInfo[]>(`${this.basename}/api/products`);
+        return await axios.get<ProductShortInfo[]>(`${this.basename}/api/products?bug_id=${this.bugId}`);
     }
 
     async getProductById(id: number) {
-        return await axios.get<Product>(`${this.basename}/api/products/${id}`);
+        return await axios.get<Product>(`${this.basename}/api/products/${id}?bug_id=${this.bugId}`);
     }
 
     async checkout(form: CheckoutFormData, cart: CartState) {
-        return await axios.post<CheckoutResponse>(`${this.basename}/api/checkout`, { form, cart });
+        return await axios.post<CheckoutResponse>(`${this.basename}/api/checkout?bug_id=${this.bugId}`, { form, cart });
     }
 }
 

@@ -68,7 +68,6 @@ describe('Catalog', () => {
             material: getByTestId('material').innerHTML
         }
         expect(finalProduct).toEqual({...product, price: '$' + product?.price});
-        const addToCart = getByTestId('add-to-cart');
         screen.logTestingPlaygroundURL()
     })
 });
